@@ -15,6 +15,34 @@ export class AppComponent {
 
   }
   logout(): void {
+    const idToken = localStorage.getItem('id_token');
+    console.log(idToken);
+    
+
+    // Reset the OAuth service session
+    this.oauthService.logOut();
+
+    // const idToken = this.oauthService.getIdToken(); // Get the id_token from the OAuth service (Keycloak or another provider)
+    const postLogoutRedirectUri = 'http://localhost:4200/'; // Define where to redirect after logout
+
+    if (idToken) {
+      // Build the logout URL with the id_token_hint
+      const logoutUrl = `http://0.0.0.0:8080/realms/Oauth/protocol/openid-connect/logout?post_logout_redirect_uri=${encodeURIComponent(postLogoutRedirectUri)}&id_token_hint=${encodeURIComponent(idToken)}`;
+
+      // Redirect the user to the logout URL
+      window.location.href = logoutUrl;
+    } else {
+      console.error('ID token not found. Unable to log out.');
+    }
+    // Optional: Add your Keycloak logout URL with the correct redirect URI
+    // const logoutUrl = 'http://0.0.0.0:8080/realms/Oauth/protocol/openid-connect/logout?redirect_uri=http://localhost:4200/';
+    // if (!logoutUrl) {
+    //   console.error('Logout URL is missing!');
+    // }
+    // window.location.href = 'http://0.0.0.0:8080/realms/Oauth/protocol/openid-connect/logout?redirect_uri=http://localhost:4200/';
+    // setTimeout(() => {
+    //   window.location.href = 'http://localhost:4200/'; // Redirect to desired page
+    // }, 1000);
     this.oauthService.revokeTokenAndLogout();
 
 
@@ -25,15 +53,7 @@ export class AppComponent {
     console.log("logout");
 
 
-    // Reset the OAuth service session
-    this.oauthService.logOut();
-    // Optional: Add your Keycloak logout URL with the correct redirect URI
-    const logoutUrl = 'http://0.0.0.0:8080/realms/Oauth/protocol/openid-connect/logout?redirect_uri=http://localhost:4200/';
-    if (!logoutUrl) {
-      console.error('Logout URL is missing!');
-    }
-    window.location.href = 'http://0.0.0.0:8080/realms/Oauth/protocol/openid-connect/logout?redirect_uri=http://localhost:4200/';
-
   }
+
   title = 'oauth2-client';
 }

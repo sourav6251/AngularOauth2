@@ -37,22 +37,4 @@ export class LoginComponent {
 
   }
 }
-// gitlogin(): void {
-//   console.log("GitHub login initiated");
-
-//   this.oauthService.configure({
-//     issuer: 'https://github.com/login/oauth',
-//     redirectUri: this.configService.gitOAuthConfig.redirectUri,
-//     clientId: this.configService.gitOAuthConfig.clientId,
-//     scope: this.configService.gitOAuthConfig.scope,
-//     responseType: 'code',
-//     // pkceMethod: this.configService.gitOAuthConfig.pkceMethod,
-//     requireHttps: false,
-
-//   });
-
-//   this.oauthService.loadDiscoveryDocument().then(() => {
-//     this.oauthService.initCodeFlow();  // Initiating code flow for GitHub login
-//   });
-// }
 

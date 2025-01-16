@@ -7,9 +7,9 @@ import { OAuthModule } from 'angular-oauth2-oidc';
 import { LoginComponent } from './app/login/login.component';
 import { HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { BodyComponent } from './app/body/body.component';
-
-// bootstrapApplication(AppComponent, appConfig)
-//   .catch((err) => console.error(err));
+import { SecureComponent } from './app/secure/secure.component';
+import { LogoutComponent } from './app/logout/logout.component';
+import { NavbarComponent } from './app/navbar/navbar.component';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -23,15 +23,24 @@ bootstrapApplication(AppComponent, {
     component:BodyComponent,
     pathMatch: 'full'
   },
-  // {
-  //   path:'',
-  //   redirectTo:'/body',
-  //   pathMatch: 'full'
+  {
+    path:'secure',
+    component:SecureComponent,
+    pathMatch: 'full'
 
-  // }
+  },
+  {
+    path:'logout',
+    component:LogoutComponent,
+    pathMatch:'full'
+  },
+  {
+    path:'nav',
+    component:NavbarComponent,
+    pathMatch:'full'
+  }
 ]), // Add your routes here
     importProvidersFrom(OAuthModule.forRoot()), // Correctly import the OAuthModule
-    // importProvidersFrom(HttpClientModule),
     provideHttpClient()
   ],
 }).catch((err) => console.error(err));

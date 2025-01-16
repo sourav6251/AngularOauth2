@@ -1,6 +1,10 @@
-<div class="mainlogin">
-  <p>login works!</p>
-  <button (click)="googlelogin()">Google</button>
-  <button (click)="facebooklogin()">Facebook</button>
-  <button (click)="gitlogin()">Git</button>
+<div class="login-container">
+  <div class="mainlogin">
+    <p class="login-message">Login works!</p>
+    <div class="button-container">
+      <button class="login-button google" (click)="googlelogin()">Keycloak</button>
+      <button class="login-button facebook" (click)="facebooklogin()">Facebook</button>
+      <button class="login-button git" (click)="gitlogin()">Git</button>
+    </div>
+  </div>
 </div>

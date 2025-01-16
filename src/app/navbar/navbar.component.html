@@ -1,0 +1,6 @@
+<div class="nav">
+    <div class="child">
+      <button *ngIf="!isLoggedIn" routerLink="/login">Login</button>
+      <button *ngIf="isLoggedIn" (click)="logout()">Logout</button>
+    </div>
+  </div>
